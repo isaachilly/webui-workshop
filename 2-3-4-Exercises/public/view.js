@@ -1,13 +1,15 @@
-import {h} from '/js/src/index.js';
+import {h, switchCase} from '/js/src/index.js';
+import homeContent from './home/homePage.js';
+import aboutContent from './about/aboutPage.js';
 
 /**
  * Main view layout
  * @return {vnode} application view to be drawn according to model
  */
-export default () => [
+export default (model) => [
   h('.flex-column.absolute-fill', [
-    header(),
-    content()
+    header(model),
+    content(model)
   ])
 ];
 
@@ -15,13 +17,18 @@ export default () => [
  * Top header of the page
  * @return {vnode}
  */
-const header = () =>
-  h('.p2.shadow-level2.level2', {
+const header = (model) =>
+  h('.p2.shadow-level2.level2.f3', {
     style: 'display: flex; justify-content: center'
-  }, 'Welcome to your home page');
+  }, model.router.params.page || 'default page');
 
 /**
  * Page content
  * @return {vnode}
  */
-const content = () => h('', 'Add your content here');
+const content = (model) => {
+  return switchCase(model.router.params.page, {
+    home: () => homeContent(model),
+    about: () => aboutContent(model),
+  }, h('', 'Page not found'))();
+};
