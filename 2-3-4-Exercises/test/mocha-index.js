@@ -14,7 +14,8 @@ describe('Test index.js components', () => {
       console.error(`Server stderr: ${data}`);
     });
 
-    browser = await puppeteer.launch({headless: true});
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    browser = await puppeteer.launch({headless: true, timeout: 10000});
     page = await browser.newPage();
   });
 
