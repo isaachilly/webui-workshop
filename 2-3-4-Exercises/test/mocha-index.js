@@ -15,7 +15,7 @@ describe('Test index.js components', () => {
     });
 
     await new Promise(resolve => setTimeout(resolve, 2000));
-    browser = await puppeteer.launch({headless: true, timeout: 10000});
+    browser = await puppeteer.launch({headless: 'shell', timeout: 10000});
     page = await browser.newPage();
   });
 
