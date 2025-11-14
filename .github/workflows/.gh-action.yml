@@ -22,5 +22,7 @@ jobs:
           node-version: '22.x'
       - run: (cd 2-3-4-Exercises; cp config-default.js config.js)
       - run: (cd 2-3-4-Exercises; npm ci)
-      - run: (cd 2-3-4-Exercises; npm test)
       - run: (cd 2-3-4-Exercises; npm run coverage)
+
+      # check plicate service, also the remote data double use loading spinner,
+      # check all code quality 

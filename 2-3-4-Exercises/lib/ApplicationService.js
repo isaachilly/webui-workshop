@@ -1,15 +1,12 @@
 class ApplicationService {
-    constructor() {
-        this.details = {
-            appName: '2-3-4 Exercises Application',
-        };
+    constructor(appDetails) {
+        this.details = appDetails
 
     }
 
     getDetails() {
         return this.details;
     }
-
 }     
 
 export default ApplicationService;

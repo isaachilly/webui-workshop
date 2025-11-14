@@ -1,14 +1,15 @@
 import {h, mount, Observable, WebSocketClient, sessionService} from '/js/src/index.js';
 
-
+// Simple Model View setup
 const model = new Observable();
-const view = (model) => h('h1.title', `${model.title}`);
-mount(document.body, view, model);
 model.title = 'Websocket Example';
 model.notify();
 
-sessionService.loadAndHideParameters();
+const view = (model) => h('h1.title', `${model.title}`);
 
+mount(document.body, view, model);
+
+sessionService.loadAndHideParameters();
 
 const ws = new WebSocketClient();
 

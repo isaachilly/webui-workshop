@@ -7,7 +7,6 @@ const content = (model) => {
         h('p', 'Welcome to the home page of our application.'),
         h('div.flex.flex-column.w-33', [
             h('.btn.btn-primary.mv2', {
-                // on load print to console its purpose
                 oninit: () => {
                     console.log('This button takes you to the About page');
                 },
@@ -16,8 +15,8 @@ const content = (model) => {
                 },
                 id: 'about-button'
             }, [h('div.flex.flex-row.justify-center.items-center', [h('p', 'About'), h('span.mh1', info())])]),
+            
             h('.btn.btn-primary.mv2', {
-                // on load print to console its purpose
                 oninit: () => {
                     console.log('This button tells you your username');
                 },

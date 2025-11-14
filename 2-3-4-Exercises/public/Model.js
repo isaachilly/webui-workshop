@@ -1,4 +1,4 @@
-import {Observable, QueryRouter, Loader, sessionService} from '/js/src/index.js';
+import {Observable, QueryRouter, Loader, sessionService, WebSocketClient} from '/js/src/index.js';
 import Home from './home/Home.js';
 import About from './about/About.js';
 
@@ -21,7 +21,7 @@ export default class Model extends Observable {
     this.loader = new Loader(this);
     this.loader.bubbleTo(this);
 
-    // Sub-models
+    // Setup sub-models
     this.home = new Home();
     this.home.bubbleTo(this);
 
@@ -32,6 +32,18 @@ export default class Model extends Observable {
     this.router = new QueryRouter();
     this.router.observe(this.handleLocationChange.bind(this));
     this.router.bubbleTo(this);
+
+    this.randomNumber = null;
+
+    this.ws = new WebSocketClient();
+
+    this.ws.addListener('command', (message) => {
+    if (message.command === 'random-number-update') {
+        console.log('Received message from server:', message.payload);
+        this.randomNumber = message.payload.number;
+        this.notify();
+    }
+});
 
     this.handleLocationChange(); // Init first page
   }

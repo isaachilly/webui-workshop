@@ -1,7 +1,7 @@
 const path = require('path');
 const config = require('./config.js');
 
-const {HttpServer, LogManager} = require('@aliceo2/web-ui');
+const {HttpServer, LogManager, WebSocket, WebSocketMessage} = require('@aliceo2/web-ui');
 
 const logger = LogManager.getLogger('Exercise2');
 
@@ -15,3 +15,14 @@ http.get('/applicationData', (req, res) => {
     });
 });
 
+const ws = new WebSocket(http);
+
+ws.bind('random-number', (message) => message);
+
+setInterval(() => {
+    const randomNum = Math.floor(Math.random() * 100);
+    const msg = new WebSocketMessage(200).setCommand('random-number-update')
+        .setPayload({number: randomNum});
+    ws.broadcast(msg);
+    logger.infoMessage(`Broadcasted random number: ${randomNum}`);
+}, 5000);

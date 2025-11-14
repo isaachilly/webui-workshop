@@ -1,4 +1,3 @@
-// Include required modules
 const {HttpServer, WebSocket, WebSocketMessage, LogManager} = require('@aliceo2/web-ui');
 
 const logger = LogManager.getLogger('Exercise1');
@@ -12,7 +11,7 @@ const http = new HttpServer({
   port: 8080,
 }, jwtConfig);
 
-// Server `public` folder
+// Serve the frontend
 http.addStaticPath('public');
 
 http.get('/helloWorld', (req, res) => {
@@ -25,7 +24,7 @@ http.get('/testJWT', (req, res) => {
 });
 
 http.get('/addDefaultUser', (req, res) => {
-  http.addDefaultUserData(req, res); // adds /api/userData endpoint
+  http.addDefaultUserData(req, res);
 }, { public: true});
 
 // curl cmd to test it

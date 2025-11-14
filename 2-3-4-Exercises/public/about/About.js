@@ -30,7 +30,6 @@ class About extends Observable {
         this.details = details;
         this.notify();
     }
-
 }
 
 export default About;

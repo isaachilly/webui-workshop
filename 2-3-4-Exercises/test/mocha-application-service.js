@@ -3,9 +3,12 @@ import ApplicationService from '../lib/ApplicationService.js'; // adjust path as
 
 describe('ApplicationService', () => {
   let appService;
+  const mockDetails = {
+    appName: '2-3-4 Exercises Application',
+  };
 
   beforeEach(() => {
-    appService = new ApplicationService();
+    appService = new ApplicationService(mockDetails);
   });
 
   it('should be initialized', () => {
@@ -14,12 +17,9 @@ describe('ApplicationService', () => {
   });
 
   it('getDetails() should return the expected details JSON object', async () => {
-    const expectedDetails = {
-      appName: '2-3-4 Exercises Application',
-    };
 
     const returnedData = await appService.getDetails();
 
-    expect(returnedData).to.deep.equal(expectedDetails);
+    expect(returnedData).to.deep.equal(mockDetails);
   });
 });

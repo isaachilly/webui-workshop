@@ -20,7 +20,7 @@ export default (model) => [
 const header = (model) =>
   h('.p2.shadow-level2.level2.f3', {
     style: 'display: flex; justify-content: center'
-  }, model.router.params.page || 'default page');
+  }, [model.router.params.page || 'default page', ' - Random number: ', model.randomNumber !== null ? model.randomNumber : 'N/A']);
 
 /**
  * Page content
