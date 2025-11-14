@@ -72,9 +72,6 @@ it('Displays username on Get Username button click', async () => {
         const display = document.querySelector('#username-display');
         return display && display.textContent.includes('anonymous');
     });
-    
-    const usernameText = await page.$eval('#username-display', p => p.textContent);
-    expect(usernameText).to.include('anonymous');
 });
 
 it('Displays application data status on Request Application Data button click', async () => {
@@ -85,9 +82,6 @@ it('Displays application data status on Request Application Data button click', 
         const statusDisplay = document.querySelector('#application-data-status-display');
         return statusDisplay && statusDisplay.textContent.includes('successfully');
     });
-    
-    const statusText = await page.$eval('#application-data-status-display', p => p.textContent);
-    expect(statusText).to.include('successfully');
 });
 
 
